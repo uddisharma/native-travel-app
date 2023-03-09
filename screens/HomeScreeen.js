@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useLayoutEffect } from "react";
+import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HeroImage } from "../assets";
@@ -31,15 +32,26 @@ const HomeScreeen = () => {
       <View className="w-[300px] h-[300px] bg-[#4DABB7] rounded-full  absolute bottom-20 -right-36"></View>
       <View className="w-[300px] h-[300px] bg-[#E99] rounded-full  absolute bottom-[-50] -left-36"></View>
       <View className="flex-1 relative items-center justify-center">
-        <Image source={HeroImage} className="w-80 h-full mt-10" />
+        <Animatable.Image
+          animation={"pulse"}
+          easing="ease-in-out"
+          source={HeroImage}
+          className="w-80 h-full mt-10"
+        />
 
-        <View className="absolute border-l-2 border-r-2 border-t-4 border-[#4DABB7]  bottom-20 w-24 h-24 rounded-full items-center justify-center">
-          <TouchableOpacity>
-            <View className="bg-[#4DABB7]  w-20 h-20 rounded-full items-center justify-center">
-              <Text className="text-gray-50 text-[30px] font-semibold">Go</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Discover")}
+          className="absolute border-l-2 border-r-2 border-t-4 border-[#4DABB7]  bottom-20 w-24 h-24 rounded-full items-center justify-center"
+        >
+          <Animatable.View
+            animation={"pulse"}
+            easing="ease-in-out"
+            iterationCount={"infinite"}
+            className="bg-[#4DABB7]  w-20 h-20 rounded-full items-center justify-center"
+          >
+            <Text className="text-gray-50 text-[30px] font-semibold">Go</Text>
+          </Animatable.View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
